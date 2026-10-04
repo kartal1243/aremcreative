@@ -1,0 +1,31 @@
+# deps
+node_modules/
+
+# next
+.next/
+out/
+build/
+
+# deploy artıkları
+deploy.zip
+*.tgz
+
+# env
+.env
+.env*.local
+.env*.log
+
+# logs
+*.log
+npm-debug.log*
+
+# os / editor
+.DS_Store
+*.pem
+.vscode/*
+!.vscode/extensions.json
+.idea/
+
+# keep public logos
+!public/*.jpg
+!public/*.svg
