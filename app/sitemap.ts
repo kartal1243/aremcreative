@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { services, posts } from "@/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://aremcreative.com";
+  const base = "https://aremcreative.com.tr";
   const staticPages = ["", "/biz-kimiz", "/hizmetler", "/blog", "/iletisim"];
   return [
     ...staticPages.map((p) => ({ url: `${base}${p}`, lastModified: new Date() })),

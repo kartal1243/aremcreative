@@ -5,15 +5,38 @@ import Footer from "@/components/Footer";
 import FloatingButtons from "@/components/FloatingButtons";
 
 export const metadata: Metadata = {
-  title: "Arem Creative — Sosyal Medya Ajansı",
+  metadataBase: new URL("https://aremcreative.com.tr"),
+  title: {
+    default: "Arem Creative — Sosyal Medya Ajansı | İstanbul & Kocaeli",
+    template: "%s | Arem Creative",
+  },
   description:
-    "Arem Creative: hedef kitlenizde yankı uyandıracak, etkileyici ve sonuç odaklı sosyal medya yönetimi, içerik üretimi ve video prodüksiyon.",
+    "Arem Creative: İstanbul, İzmit ve Kocaeli'de sosyal medya yönetimi, reels & video içerik üretimi, çekim ve dijital reklam. Hedef kitlende yankı uyandıracak sonuç odaklı içerikler.",
+  keywords: [
+    "sosyal medya ajansı",
+    "sosyal medya ajansı istanbul",
+    "sosyal medya ajansı kocaeli",
+    "sosyal medya ajansı izmit",
+    "reels çekimi",
+    "video içerik üretimi",
+    "sosyal medya yönetimi",
+    "dijital reklam",
+  ],
+  alternates: { canonical: "/" },
   openGraph: {
     title: "Arem Creative — Sosyal Medya Ajansı",
-    description: "Be a Creative! Markanızın sesini yükseltiyoruz.",
+    description: "Be a Creative! İstanbul & Kocaeli: sosyal medya yönetimi, reels, çekim ve reklam.",
+    url: "/",
+    siteName: "Arem Creative",
     type: "website",
     locale: "tr_TR",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Arem Creative — Sosyal Medya Ajansı",
+    description: "İstanbul & Kocaeli odaklı sosyal medya, reels ve video prodüksiyon.",
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
