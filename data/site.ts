@@ -115,7 +115,7 @@ export const posts = [
 ];
 
 export const contact = {
-  email: "hello@aremcreative.com",
+  email: "hello@aremcreative.com.tr",
   instagram: "https://instagram.com/aremcreative",
   linkedin: "https://linkedin.com/",
 };
