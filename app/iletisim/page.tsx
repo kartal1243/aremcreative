@@ -16,16 +16,20 @@ export default function Page() {
     setLoading(true);
     setError("");
     try {
+      const ctl = new AbortController();
+      const timeout = setTimeout(() => ctl.abort(), 30000);
       const r = await fetch("/api/teklif", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, contact: contactInfo, service: "İletişim formu", message: `${message}\nInstagram: ${insta}` }),
+        signal: ctl.signal,
       });
+      clearTimeout(timeout);
       const j = await r.json();
       if (!j.ok) throw new Error(j.error || "Gönderilemedi");
       setSent(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gönderilemedi");
+      setError(err instanceof Error && err.name === "AbortError" ? "Zaman aşımı. Tekrar dene." : err instanceof Error ? err.message : "Gönderilemedi");
     } finally {
       setLoading(false);
     }
@@ -43,7 +47,7 @@ export default function Page() {
       </div>
       {sent ? (
         <p className="h-fit rounded-3xl border-4 border-ink bg-white p-6 font-semibold shadow-[8px_8px_0_#073066]">
-          Teşekkürler! 24 saat içinde {contact.email} üzerinden döneceğiz.
+          Teşekkürler! 24 saat içinde hello@aremcreative.com.tr adresinden size döneceğiz.
         </p>
       ) : (
       <form className="h-fit rounded-3xl border-4 border-ink bg-white p-6 shadow-[8px_8px_0_#073066]" onSubmit={submit}>

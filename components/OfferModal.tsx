@@ -16,16 +16,20 @@ export default function OfferModal({ open, onClose }: { open: boolean; onClose: 
     setLoading(true);
     setError("");
     try {
+      const ctl = new AbortController();
+      const timeout = setTimeout(() => ctl.abort(), 30000);
       const r = await fetch("/api/teklif", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, contact: contactInfo, service, message }),
+        signal: ctl.signal,
       });
+      clearTimeout(timeout);
       const j = await r.json();
       if (!j.ok) throw new Error(j.error || "Gönderilemedi");
       setSent(true);
     } catch (err) {
-      setError(err instanceof Error ? err.message : "Gönderilemedi");
+      setError(err instanceof Error && err.name === "AbortError" ? "Zaman aşımı. Tekrar dene." : err instanceof Error ? err.message : "Gönderilemedi");
     } finally {
       setLoading(false);
     }
@@ -41,7 +45,7 @@ export default function OfferModal({ open, onClose }: { open: boolean; onClose: 
         </div>
         {sent ? (
           <p className="rounded-2xl border-2 border-ink bg-white p-4 font-semibold">
-            Teşekkürler! 24 saat içinde hello@aremcreative.com.tr üzerinden döneceğiz.
+            Teşekkürler! 24 saat içinde hello@aremcreative.com.tr adresinden size döneceğiz.
           </p>
         ) : (
           <form
