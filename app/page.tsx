@@ -3,10 +3,12 @@ import Marquee from "@/components/Marquee";
 import Process from "@/components/Process";
 import Services from "@/components/Services";
 import Testimonials from "@/components/Testimonials";
-import Manifesto from "@/components/Manifesto";
+import Yaptiklarimiz from "@/components/Yaptiklarimiz";
 import Blog from "@/components/Blog";
 import SeoFaq from "@/components/SeoFaq";
 import Cta from "@/components/Cta";
+
+export const revalidate = 0;
 
 export default function Page() {
   return (
@@ -15,7 +17,7 @@ export default function Page() {
       <Marquee />
       <Process />
       <Services />
-      <Manifesto />
+      <Yaptiklarimiz />
       <Testimonials />
       <Blog />
       <SeoFaq />

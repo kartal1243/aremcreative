@@ -29,3 +29,7 @@ npm-debug.log*
 # keep public logos
 !public/*.jpg
 !public/*.svg
+
+# kullanıcı videoları
+public/uploads/
+data/videos.json
