@@ -16,8 +16,8 @@ export default function Page() {
       <Hero />
       <Marquee />
       <Process />
-      <Services />
       <Yaptiklarimiz />
+      <Services />
       <Testimonials />
       <Blog />
       <SeoFaq />
