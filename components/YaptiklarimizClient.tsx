@@ -14,15 +14,16 @@ export default function YaptiklarimizClient({ videos }: { videos: VideoItem[] })
         <figcaption className="mt-3 text-center font-semibold">{v.title}</figcaption>
       </figure>
       <div>
-        <p className="text-sm font-bold text-smoke">Diğer projeler:</p>
-        <ul className="mt-4 space-y-3">
+        <p className="text-xs font-bold tracking-widest text-smoke">PROJELER</p>
+        <ul className="mt-4 divide-y-2 divide-ink/10">
           {videos.map((item, i) => (
             <li key={item.src}>
               <button
                 onClick={() => setSel(i)}
-                className={`w-full rounded-2xl border-2 border-ink px-4 py-3 text-left font-semibold transition ${i === sel ? "bg-ink text-cream shadow-[4px_4px_0_#073066]" : "bg-white shadow-[4px_4px_0_#073066] hover:bg-cream"}`}
+                className={`flex w-full items-center gap-3 py-3 text-left transition ${i === sel ? "text-accent" : "text-ink hover:translate-x-1"}`}
               >
-                {item.title}
+                <span className={`h-2 w-2 shrink-0 rounded-full ${i === sel ? "bg-accent" : "bg-ink/20"}`} />
+                <span className="font-display text-lg leading-tight">{item.title}</span>
               </button>
             </li>
           ))}
