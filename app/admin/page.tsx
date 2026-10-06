@@ -37,7 +37,9 @@ export default function Page() {
       fd.append("title", title);
       if (file) fd.append("file", file);
       const r = await fetch("/api/videolar", { method: "POST", body: fd });
-      const j = await r.json();
+      const txt = await r.text();
+      let j: any;
+      try { j = JSON.parse(txt); } catch { throw new Error(r.status === 413 ? "Video çok büyük (nginx limiti)." : `Sunucu hatası (${r.status}).`); }
       if (!j.ok) throw new Error(j.error || "Olmadı");
       setMsg("Yüklendi.");
       setTitle("");
