@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-export type VideoItem = { title: string; src: string; date: string };
+export type VideoItem = { title: string; src: string; description?: string; date: string };
 
 const FILE = path.join(process.cwd(), "data", "videos.json");
 

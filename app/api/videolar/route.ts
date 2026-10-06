@@ -15,6 +15,7 @@ export async function POST(req: Request) {
   const form = await req.formData();
   const password = String(form.get("password") ?? "");
   const title = String(form.get("title") ?? "").slice(0, 100).trim();
+  const description = String(form.get("description") ?? "").slice(0, 500).trim();
   const file = form.get("file");
 
   if (!ok(password)) return NextResponse.json({ ok: false, error: "Şifre hatalı." }, { status: 401 });
@@ -32,7 +33,7 @@ export async function POST(req: Request) {
   fs.writeFileSync(path.join(dir, name), buf);
 
   const src = `/uploads/videos/${name}`;
-  addVideo({ title, src, date: new Date().toISOString() });
+  addVideo({ title, src, description: description || undefined, date: new Date().toISOString() });
   return NextResponse.json({ ok: true, src });
 }
 
